@@ -1,6 +1,7 @@
 import configparser
 import psycopg2 #postgresql db adapter
-from create_schema_sql import create_table_queries, drop_table_queries
+from locs import CONFIG_PATH
+from create_schema_sql import create_table_queries, drop_table_queries, default_values_queries
 
 
 def drop_tables (cur, conn):
@@ -15,11 +16,17 @@ def create_tables(cur, conn):
     for query in create_table_queries:
         cur.execute(query)
         conn.commit()
+        
+def default_missing_values(cur, conn):
+    """run the queries to add the first sk aligned to missing values into the tables"""
+    for query in default_values_queries:
+        cur.execute(query)
+        conn.commit()
        
         
 def main():
-    """Connect to the database with details in config file, extact data from staging
-    tables and insert data into the database.
+    """Connect to the database with details in config file, drop existing tables in db and
+    recreate the schema
     """
     config = configparser.ConfigParser()
     config.read('dwh.cfg')
@@ -32,6 +39,9 @@ def main():
     
     #replace the tables with new ones
     create_tables(cur, conn)
+    
+    #add missing postcode value into table
+    default_missing_values(cur, conn)
     
     conn.close()
     
