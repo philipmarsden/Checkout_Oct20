@@ -109,6 +109,10 @@ update user_dim
 
 
 #Fact table staging
+pageview_fact_stg_delete = ("""
+truncate table pageview_stg
+""")
+
 pageview_fact_stg_insert = ("""
 insert into pageview_stg (
     time_stamp
@@ -200,7 +204,10 @@ update pageviews_fact
 insert_dims_queries_hourly = ['tim_dim_insert', 'url_dim_insert', 'missing_users_insert']
 insert_stg_queries_hourly = ['pageview_fact_stg_insert']
 
+truncate_tables_queries = ['pageview_fact_stg_delete']
 insert_fact_queries_hourly = ['insert_pageview_fact']
 
 insert_queries_daily = ['user_dim_insert', 'postcode_dim_insert']
 update_queries_daily = ['user_dim_update', 'update_pageview_fact']
+
+

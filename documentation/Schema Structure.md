@@ -1,11 +1,12 @@
-# Data structure
-We will build a star schema to house the underlying data, this shoudl provide a balance between efficiency
+## Data structure
+We will build a star schema to house the underlying data, this should provide a balance between efficiency
 and flexibility when it comes to running queries. 
 If we find that the database is not performant then consider changing to something more like cassandra tables
 with each query having a specific table and columnar format should provide improved speed.
 I have not done that here as i would also like to be more forward thinking and allow for a degree of self serve
 capabilities, where ad-hoc queries can be answered by the business rather than the data team needing to build 
 bespoke tables for each question.
+
 
 ### Star Schema structure
 #### Dimensions
@@ -31,11 +32,22 @@ Fields: user_sk, user_id, current_postcode
 Update: Daily
 note - this is likely to be where performance is tested in having a dimension with 20m rows. This will impact the 
 second question looking at current location. If the issue presents then we will brainstorm solutions.
-note - we can only really get the postcode as at midnight, rather than the preferred "when it changes" - determine
+note (assumption) - we can only really get the postcode as at midnight, rather than the preferred "when it changes" - determine
 what value this will add and work with technology to see about how we can get a solution
-
 
 - Page Views Fact Table: Count of the number of page views by time, user, url, and postcode at time of view (at 
 least the postcode as at the last time it was recorded)
 Fields: time_sk, url_sk, user_sk, postcode_sk, page_views (count)
 Update: Hourly
+
+
+### Views to answer questions
+- Number of pageviews, on a given time period (hour, day, month, etc), per postcode -
+based on the current/most recent postcode of a user.
+-- Summary of the fact table with a join on user to get the current postcode
+pageviews_by_current_postcode_v
+
+- Number of pageviews, on a given time period (hour, day, month, etc), per postcode -
+based on the postcode a user was in at the time when that user made a pageview.
+-- Summary of the fact table taking the postcode stored within fact table
+pageviews_by_postcode_v

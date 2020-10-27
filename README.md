@@ -1,7 +1,6 @@
 # Checkout_Oct20
 Checkout.com interview assignment
 
-
 ## Brief
 
 Background
@@ -49,6 +48,19 @@ easily and in a performant way answer 2 questions:
 based on the current/most recent postcode of a user.
 - Number of pageviews, on a given time period (hour, day, month, etc), per postcode -
 based on the postcode a user was in at the time when that user made a pageview.
+
+
+### repostory structures
+
+.
++-- config \ for config & connection files
++-- documentation \ all documentation on process and data
++-- src \ source code
+|   +-- etl \ pipeline code 
+|   +-- orchestration \ scheduling code
+|   +-- schema \ inital table create
+|   +-- test \ job tracker and insert
+|   +-- views \ non-physical layer to answer questions
 
 
 
