@@ -1,5 +1,5 @@
 
-### Scheduler
+## Scheduler
 
 We have used python scheduler - other options may be better but this is simple and easily installed.
 https://apscheduler.readthedocs.io/en/stable/userguide.html#basic-concepts
@@ -7,6 +7,8 @@ https://apscheduler.readthedocs.io/en/stable/userguide.html#basic-concepts
 Other options to operate at scale may be something like airflow which has useful user interface for managing many pipelines. 
 I have some, but limited, experience with airflow and so have not tried to implement it here.
 
+Another preference would be to set a trigger when the file is downloaded to run the jobs so that we dont have to worry about
+timings so much.
 
 ## Stages of the process
 
@@ -33,3 +35,4 @@ page views for the previous hour - not a perfect hour, but the time since the la
 3. using the updated dimenstions add in the surrogate keys
 4. load the new data into the fact table
 
+There is some example code for how the scheduler may work, it is a suggested method with some points for consideration.
