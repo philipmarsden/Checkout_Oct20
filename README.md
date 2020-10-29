@@ -56,11 +56,11 @@ based on the postcode a user was in at the time when that user made a pageview.
 * config \ for config & connection files
 * documentation \ all documentation on process and data
 * src \ source code
- * etl \ pipeline code 
- * orchestration \ scheduling code
- * schema \ inital table create
- * test \ job tracker and insert
- * views \ non-physical layer to answer questions
+	* etl \ pipeline code 
+	* orchestration \ scheduling code
+	* schema \ inital table create
+	* test \ job tracker and insert
+	* views \ non-physical layer to answer questions
 
 
 ### Thoughts for Future 
