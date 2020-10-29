@@ -65,12 +65,6 @@ based on the postcode a user was in at the time when that user made a pageview.
 
 ### Thoughts for Future 
 
-potential issues:
-- need to check the pageviews data in the extract to see the start and end time - can the hours overlap?
-- what happens when a user has a pageview in the time between the start of the hour and extract and then the same pageview
-within the next hour?
-can separate them off and union with next hours load - so that 1 hour is loaded in full at a time.
-
 - Adding in new variables - how can we do this efficiently.
 dev > test > prod - how long does this process take? - agile delivery every 2 weeks?
 how do we expand out the dimensions with additional fact tables and data 
@@ -82,5 +76,10 @@ Make sure this is our golden source for users.
 increase processing power - cloud setup means this is possible at a cost.
 how can we make it more efficient - collecting addtional data at source? e.g. postcode at time of view?
 
+potential issues:
+- need to check the pageviews data in the extract to see the start and end time - can the hours overlap?
+- what happens when a user has a pageview in the time between the start of the hour and extract and then the same pageview
+within the next hour?
+can separate them off and union with next hours load - so that 1 hour is loaded in full at a time.
 
 
